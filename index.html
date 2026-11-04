@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#e9e4d7">
 <title>Юрий & Виктория — 05.06.2027</title>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500&family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap');
 :root{--paper:#f2eee5;--ink:#393a2d;--olive:#78845c;--olive2:#a5ad86;--brown:#78624e;--line:#c9c4b3}
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -538,6 +538,33 @@ section .inner,footer .eyebrow,footer .names,footer p{position:relative;z-index:
  text-shadow:1px 1px 0 #465334,-1px -1px 0 #819064;
 }
 @media(max-width:520px){.seal{line-height:39px}.seal .seal-v{font-size:19px}}
+
+/* Refined luxury monogram typography */
+.monogram,.closing-monogram{
+ font-family:"Bodoni Moda","Cormorant Garamond",serif!important;
+ font-weight:400!important;
+ letter-spacing:-.055em!important;
+}
+.monogram{font-size:clamp(116px,25vw,174px)!important;line-height:.9!important}
+.monogram span,.closing-monogram span{
+ font-family:"Bodoni Moda","Cormorant Garamond",serif!important;
+ font-weight:400!important;font-style:italic!important;
+ color:#a58e62!important;
+ margin-left:-.29em!important;
+ transform:translateY(.105em) rotate(-7deg)!important;
+ text-shadow:1px 1px 0 #f5f1e8,-1px -1px 0 #f5f1e8!important;
+}
+.closing-monogram{font-size:94px!important;line-height:.95!important}
+.seal,.seal .seal-v{
+ font-family:"Bodoni Moda","Cormorant Garamond",serif!important;
+ font-weight:500!important;
+}
+.seal{font-size:18px!important}
+.seal .seal-v{font-size:20px!important;font-style:italic!important}
+@media(max-width:520px){
+ .monogram{font-size:clamp(108px,29vw,150px)!important}
+ .closing-monogram{font-size:80px!important}
+}
 </style>
 </head>
 <body>
