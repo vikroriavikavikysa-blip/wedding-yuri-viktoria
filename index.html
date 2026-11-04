@@ -452,6 +452,25 @@ body:before{z-index:1!important}
  .floating-petals i:nth-child(4){--rest:84vh}
 }
 
+
+/* --- Hand-drawn olive branches framing every inner page --- */
+section,footer{position:relative;isolation:isolate}
+.side-sprig{
+ position:absolute;width:clamp(118px,17vw,190px);height:auto;
+ z-index:0;pointer-events:none;opacity:.52;
+ filter:drop-shadow(0 3px 5px #4a512b12);
+}
+.side-sprig.left{left:-28px;top:8%;transform:rotate(-8deg)}
+.side-sprig.right{right:-30px;bottom:4%;transform:rotate(172deg)}
+.side-sprig path{stroke:#65794a;stroke-width:2.1;fill:none;stroke-linecap:round}
+.side-sprig .leaf-shape{fill:#87966a;stroke:#687c4e;stroke-width:1.1}
+section .inner,footer .eyebrow,footer .names,footer p{position:relative;z-index:1}
+@media(max-width:520px){
+ .side-sprig{width:112px;opacity:.4}
+ .side-sprig.left{left:-43px;top:5%}
+ .side-sprig.right{right:-43px;bottom:2%}
+}
+
 </style>
 </head>
 <body>
@@ -557,6 +576,23 @@ body:before{z-index:1!important}
 </audio>
 <button class="music" id="musicBtn" type="button" aria-label="Включить фоновую мелодию">♫ Музыка: выкл.</button>
 <script>
+
+/* Add the same hand-drawn botanical sprigs to each inner page. */
+const sprigMarkup = (side) => `
+<svg class="side-sprig ${side}" viewBox="0 0 220 360" aria-hidden="true">
+ <path d="M18 345 C72 275 86 206 106 145 C122 96 151 54 196 18"/>
+ <path class="leaf-shape" d="M74 247 C29 240 20 209 26 187 C60 192 79 212 74 247Z"/>
+ <path class="leaf-shape" d="M91 203 C131 207 155 185 158 158 C123 156 98 173 91 203Z"/>
+ <path class="leaf-shape" d="M109 150 C69 139 57 109 68 84 C101 97 116 119 109 150Z"/>
+ <path class="leaf-shape" d="M135 103 C172 103 192 79 190 52 C157 57 137 76 135 103Z"/>
+ <path class="leaf-shape" d="M51 290 C14 280 5 254 13 233 C43 243 59 263 51 290Z"/>
+ <path class="leaf-shape" d="M153 67 C126 47 127 20 145 3 C168 24 170 48 153 67Z"/>
+</svg>`;
+document.querySelectorAll('#content section, #content footer').forEach(page => {
+ page.insertAdjacentHTML('afterbegin', sprigMarkup('right'));
+ page.insertAdjacentHTML('afterbegin', sprigMarkup('left'));
+});
+
 const hero=document.getElementById('hero'), content=document.getElementById('content');
 function openInvitation(){
  hero.classList.add('opened');
