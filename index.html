@@ -294,6 +294,55 @@ section:after{content:"❧";position:absolute;right:clamp(8px,5vw,60px);bottom:-
  .timeline:before{left:-10px}
 }
 
+
+/* --- Softer envelope, aligned dress-code palette and delicate finishing details --- */
+.envelope{
+  width:190px;height:122px;border-radius:11px;overflow:hidden;
+  background:linear-gradient(145deg,#e9e3d4,#d1c8b4);
+  border:1px solid #c4b99f;
+  box-shadow:0 18px 34px #514a3225, inset 0 1px 0 #fff9;
+}
+.envelope:before{
+  inset:0 0 auto;height:59%;
+  border-radius:0 0 48% 48% / 0 0 30% 30%;
+  clip-path:none;
+  background:linear-gradient(180deg,#f5f0e4 0%,#e6decc 100%);
+  border-bottom:1px solid #c9bea7;
+  transform-origin:top center;
+}
+.envelope:after{
+  inset:0;border-radius:10px;
+  clip-path:none;
+  background:
+   linear-gradient(145deg,transparent 49.35%,#c3b9a4 49.7%,#c3b9a4 50.1%,transparent 50.45%),
+   linear-gradient(215deg,transparent 49.35%,#d0c6b1 49.7%,#d0c6b1 50.1%,transparent 50.45%);
+  z-index:3;
+}
+.seal{width:41px;height:41px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#91a071,#65764a 72%);box-shadow:0 3px 10px #403d2b35,0 0 0 3px #eee8d8}
+.swatches{display:grid!important;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px!important;align-items:start;max-width:520px}
+.swatch-item{display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:12px;min-width:0;text-align:center}
+.swatch-label{display:block;width:100%;min-height:30px;font-size:10px;line-height:1.45;letter-spacing:.015em;color:#756b59;text-wrap:balance}
+.swatch{display:block;flex:none}
+.dress .inner{padding-top:45px;padding-bottom:42px}
+.dress h2{margin-bottom:20px}
+.dress p{max-width:540px;margin-left:auto;margin-right:auto}
+.dress .swatches{margin-top:30px}
+.frame{border-radius:2px}
+.frame:before,.frame:after{font-size:27px}
+.kicker{display:flex;align-items:center;justify-content:center;gap:8px}
+.kicker:before,.kicker:after{content:"";display:block;width:27px;height:1px;background:linear-gradient(90deg,transparent,#a99a72)}
+.kicker:after{background:linear-gradient(90deg,#a99a72,transparent)}
+.date{position:relative}
+.date:before,.date:after{content:"✧";color:#9aa47a;font-size:12px;position:absolute;top:50%;transform:translateY(-50%)}
+.date:before{left:4px}.date:after{right:4px}
+section:before{margin-bottom:24px}
+@media(max-width:420px){
+ .swatches{gap:7px!important}
+ .swatch{width:41px;height:41px}
+ .swatch-label{font-size:9px;min-height:38px;line-height:1.35}
+ .envelope{width:174px;height:112px}
+}
+
 </style>
 </head>
 <body>
@@ -363,12 +412,11 @@ section:after{content:"❧";position:absolute;right:clamp(8px,5vw,60px);bottom:-
       <h2>Дресс-код</h2>
       <p>Мы будем рады если в своих нарядах вы поддержите цветовую гамму нашей свадьбы</p>
       <div class="swatches">
-        <span class="swatch" style="background:#514235" title="Тёмно-коричневый"></span>
-        <span class="swatch" style="background:#987b5d" title="Светло-коричневый"></span>
-        <span class="swatch" style="background:#d8cbb1" title="Бежевый"></span>
-        <span class="swatch" style="background:#7c895d" title="Оливковый"></span>
+        <div class="swatch-item"><span class="swatch" style="background:#514235" title="Тёмно-коричневый"></span><span class="swatch-label">Тёмно-коричневый</span></div>
+        <div class="swatch-item"><span class="swatch" style="background:#987b5d" title="Светло-коричневый"></span><span class="swatch-label">Светло-коричневый</span></div>
+        <div class="swatch-item"><span class="swatch" style="background:#d8cbb1" title="Бежевый"></span><span class="swatch-label">Бежевый</span></div>
+        <div class="swatch-item"><span class="swatch" style="background:#7c895d" title="Оливковый"></span><span class="swatch-label">Оливковый</span></div>
       </div>
-      <div class="swatch-labels"><span>Тёмно-коричневый</span><span>Светло-коричневый</span><span>Бежевый</span><span>Оливковый</span></div>
     </div>
   </section>
   <section>
@@ -393,6 +441,9 @@ section:after{content:"❧";position:absolute;right:clamp(8px,5vw,60px);bottom:-
   </section>
   <footer><div class="eyebrow">С любовью</div><div class="names">Юрий <span class="amp">&</span> Виктория</div><p>05 июня 2027</p></footer>
 </main>
+<audio id="weddingMusic" preload="none" loop>
+ <source src="https://upload.wikimedia.org/wikipedia/commons/6/62/Pachelbel%27s_Canon.ogg" type="audio/ogg">
+</audio>
 <button class="music" id="musicBtn" type="button" aria-label="Включить фоновую мелодию">♫ Музыка: выкл.</button>
 <script>
 const hero=document.getElementById('hero'), content=document.getElementById('content');
@@ -446,81 +497,30 @@ document.getElementById('rsvp').addEventListener('submit', async e=>{
   button.textContent='Попробовать снова';
  }
 });
-/* Reliable Web Audio playback: original soft piano-style Canon-inspired arrangement. */
-let audioCtx=null, masterGain=null, playing=false, musicTimer=null, nextNoteTime=0, noteIndex=0;
-const beat=60/88;
-const melody=[74,73,71,69,71,73,74,69,71,69,67,66,67,69,71,66,67,66,64,62,64,66,67,62,66,64,62,61,62,64,66,61];
-const bass=[50,45,47,42,43,38,43,45];
-function midiHz(n){return 440*Math.pow(2,(n-69)/12)}
-function playPianoNote(midi,when,length,level){
-  const osc=audioCtx.createOscillator();
-  const overtone=audioCtx.createOscillator();
-  const amp=audioCtx.createGain();
-  const overtoneAmp=audioCtx.createGain();
-  osc.type='triangle';
-  osc.frequency.setValueAtTime(midiHz(midi),when);
-  overtone.type='sine';
-  overtone.frequency.setValueAtTime(midiHz(midi)*2,when);
-  amp.gain.setValueAtTime(0.0001,when);
-  amp.gain.linearRampToValueAtTime(level,when+0.035);
-  amp.gain.exponentialRampToValueAtTime(0.0001,when+length);
-  overtoneAmp.gain.setValueAtTime(0.0001,when);
-  overtoneAmp.gain.linearRampToValueAtTime(level*0.16,when+0.025);
-  overtoneAmp.gain.exponentialRampToValueAtTime(0.0001,when+length*0.7);
-  osc.connect(amp); amp.connect(masterGain);
-  overtone.connect(overtoneAmp); overtoneAmp.connect(masterGain);
-  osc.start(when); overtone.start(when);
-  osc.stop(when+length+0.04); overtone.stop(when+length+0.04);
-}
-function scheduleMusic(){
-  if(!playing || !audioCtx || audioCtx.state!=='running') return;
-  const horizon=audioCtx.currentTime+0.22;
-  while(nextNoteTime<horizon){
-    const i=noteIndex%melody.length;
-    playPianoNote(melody[i],nextNoteTime,beat*0.88,0.19);
-    if(noteIndex%4===0){
-      const bassNote=bass[Math.floor(noteIndex/4)%bass.length];
-      playPianoNote(bassNote,nextNoteTime,beat*3.5,0.075);
-    }
-    nextNoteTime+=beat*0.5;
-    noteIndex++;
-  }
-}
-document.getElementById('musicBtn').addEventListener('click',async()=>{
-  const btn=document.getElementById('musicBtn');
-  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
-  if(!AudioContextClass){btn.textContent='Музыка недоступна';return}
+/* Play a real recorded performance instead of synthesized test tones. */
+const musicBtn=document.getElementById('musicBtn');
+const weddingMusic=document.getElementById('weddingMusic');
+let musicPlaying=false;
+weddingMusic.volume=0.62;
+musicBtn.addEventListener('click',async()=>{
   try{
-    if(!audioCtx){
-      audioCtx=new AudioContextClass();
-      masterGain=audioCtx.createGain();
-      masterGain.gain.value=0.9;
-      masterGain.connect(audioCtx.destination);
-    }
-    if(!playing){
-      await audioCtx.resume();
-      playing=true;
-      nextNoteTime=audioCtx.currentTime+0.04;
-      scheduleMusic();
-      musicTimer=setInterval(scheduleMusic,40);
-      btn.textContent='♫ Музыка: вкл.';
-      btn.setAttribute('aria-label','Выключить фоновую мелодию');
+    if(!musicPlaying){
+      await weddingMusic.play();
+      musicPlaying=true;
+      musicBtn.textContent='♫ Музыка: вкл.';
+      musicBtn.setAttribute('aria-label','Выключить фоновую мелодию');
     }else{
-      playing=false;
-      clearInterval(musicTimer);
-      musicTimer=null;
-      await audioCtx.suspend();
-      btn.textContent='♫ Музыка: выкл.';
-      btn.setAttribute('aria-label','Включить фоновую мелодию');
+      weddingMusic.pause();
+      musicPlaying=false;
+      musicBtn.textContent='♫ Музыка: выкл.';
+      musicBtn.setAttribute('aria-label','Включить фоновую мелодию');
     }
   }catch(error){
-    playing=false;
-    clearInterval(musicTimer);
-    musicTimer=null;
-    btn.textContent='♫ Нажмите для музыки';
-    console.error('Audio playback could not start',error);
+    musicBtn.textContent='♫ Не удалось загрузить';
+    console.error('Wedding music could not play',error);
   }
 });
-</script>
+weddingMusic.addEventListener('ended',()=>{musicPlaying=false;musicBtn.textContent='♫ Музыка: выкл.';});
+weddingMusic.addEventListener('error',()=>{musicBtn.textContent='♫ Музыка недоступна';});</script>
 </body>
 </html>
