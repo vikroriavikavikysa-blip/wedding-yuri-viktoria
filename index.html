@@ -136,11 +136,131 @@ footer .names{font-size:clamp(38px,8vw,52px)}
  section{padding:72px 20px}
 }
 
+
+/* --- Botanical invitation art direction --- */
+:root{
+ --paper:#f4f0e5;--ink:#3c4031;--olive:#68794d;--olive2:#9ca77b;
+ --brown:#80644a;--line:#d8cfbb;--gold:#b29a6b;
+}
+body{background:#f4f0e5}
+.hero{
+ min-height:100svh;
+ background:
+  radial-gradient(ellipse at 50% 48%,rgba(255,253,246,.96) 0%,rgba(245,241,230,.92) 42%,rgba(224,221,204,.96) 100%),
+  #eee9dc;
+ isolation:isolate;
+}
+.hero:before{
+ content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
+ background:radial-gradient(ellipse at 5% 8%,#9aa77a22,transparent 30%),radial-gradient(ellipse at 95% 92%,#9aa77a26,transparent 34%);
+}
+.hero:after{inset:14px;border:1px solid #a9a184;outline:1px solid #c9c0a9;outline-offset:5px}
+.frame{
+ width:min(100%,690px);min-height:min(850px,calc(100svh - 96px));
+ background:linear-gradient(145deg,#fbf9f2f2,#f0ecdfed);
+ border:1px solid #b8ad91;outline:1px solid #d7cfbd;outline-offset:9px;
+ box-shadow:0 28px 75px #514b351c, inset 0 0 0 9px #ffffff45;
+ padding:clamp(54px,9vw,88px) 28px;
+}
+.frame:before,.frame:after{content:"✧";font-size:24px;color:#9ba47c}
+.frame:before{top:24px;left:28px}.frame:after{right:28px;bottom:24px}
+.kicker{color:#8b7859;letter-spacing:.46em}
+.monogram{font-size:clamp(112px,25vw,172px);color:#77845a;text-shadow:0 2px 0 #d5d2c2;margin:24px 0 9px}
+.names{font-size:clamp(42px,9.5vw,68px);color:#414333}
+.date{font-size:12px;letter-spacing:.34em;color:#8a7351;border-top:1px solid #c8bea8;border-bottom:1px solid #c8bea8;padding:14px 24px;margin:25px 0 26px}
+.envelope{width:184px;height:118px;margin:17px auto 30px;border:1px solid #c0b69d;background:linear-gradient(145deg,#e2dccb,#c9c2ae);box-shadow:0 20px 34px #48442e25}
+.envelope:before{background:linear-gradient(145deg,#f4f0e4,#ded7c5)}
+.envelope:after{background:linear-gradient(135deg,transparent 49.5%,#b9b097 50%),linear-gradient(225deg,transparent 49.5%,#d1c9b5 50%)}
+.seal{width:39px;height:39px;background:#738052;border:2px solid #e9e2d0;box-shadow:0 3px 12px #403d2b35}
+.open-btn,.button{border-radius:30px;padding:16px 32px;letter-spacing:.18em;font-size:9px;background:#68794d;border-color:#68794d;box-shadow:0 9px 22px #53613b30}
+.open-btn:hover,.button:hover{background:#53613d}
+.hero .note{font-size:20px;color:#89795e;margin-top:23px}
+.botanical{position:absolute;width:clamp(125px,24vw,235px);height:auto;z-index:0;pointer-events:none;opacity:.72;filter:drop-shadow(0 5px 5px #3e472018)}
+.botanical path{stroke:#718052;stroke-width:2;fill:none;stroke-linecap:round}
+.botanical .leaf-shape{fill:#87976a;stroke:#718052;stroke-width:1}
+.branch-left{left:-12px;top:7%;transform:rotate(-12deg)}
+.branch-right{right:-8px;bottom:5%;transform:rotate(168deg) scale(.92)}
+.petal{position:absolute;width:13px;height:24px;border-radius:100% 0 100% 0;background:linear-gradient(145deg,#a7b187,#66794b);opacity:.55;z-index:0;pointer-events:none;filter:drop-shadow(0 3px 4px #3f48251c);animation:petal-float 12s ease-in-out infinite}
+.petal.p1{left:17%;top:17%;transform:rotate(24deg)}
+.petal.p2{right:18%;top:28%;animation-delay:-4s;transform:rotate(70deg)}
+.petal.p3{left:22%;bottom:20%;animation-delay:-7s;transform:rotate(115deg)}
+.petal.p4{right:23%;bottom:17%;animation-delay:-2s;transform:rotate(45deg)}
+.petal.p5{left:8%;top:55%;animation-delay:-9s;transform:rotate(80deg)}
+@keyframes petal-float{0%,100%{translate:0 0;rotate:0deg}50%{translate:12px 25px;rotate:24deg}}
+section{overflow:hidden}
+section:before{content:"✧  ❧  ✧";display:block;width:auto;height:auto;background:none;color:#89956b;font:24px 'Cormorant Garamond',serif;letter-spacing:.22em;margin:0 auto 20px}
+section:nth-of-type(odd){background:radial-gradient(ellipse at 50% 0%,#fbf8ef 0%,#f3efe5 75%)}
+section:nth-of-type(even){background:radial-gradient(ellipse at 50% 0%,#f0ecdf 0%,#e6e1d4 78%)}
+.eyebrow{letter-spacing:.34em;color:#7c895d}
+h2{font-size:clamp(48px,10vw,78px);color:#414634}
+.intro{background:linear-gradient(180deg,#e9e5d8,#f6f2e8)!important}
+.intro .inner{position:relative;padding:22px 18px}
+.intro .inner:before,.intro .inner:after{content:"";position:absolute;width:46px;height:46px;border-color:#b8ad8e;border-style:solid;opacity:.75}
+.intro .inner:before{top:0;left:0;border-width:1px 0 0 1px}
+.intro .inner:after{bottom:0;right:0;border-width:0 1px 1px 0}
+.intro .script{font-size:34px;color:#877451}
+.countdown{max-width:570px;margin:38px auto 0;padding:25px 8px;border-top:1px solid #c9c0ad;border-bottom:1px solid #c9c0ad}
+.timeline{max-width:610px}
+.event{position:relative;grid-template-columns:108px 1fr;gap:24px;padding:26px 24px;background:linear-gradient(135deg,#fcfaf4,#f2eee3);border:1px solid #d1c8b4;box-shadow:0 12px 28px #514a3210}
+.event:before{content:"";position:absolute;left:0;top:12px;bottom:12px;width:3px;background:linear-gradient(#aab48a,#68794d)}
+.event time{font-size:36px;color:#758353}
+.event h3{font-size:31px}
+.dress .inner{background:#f7f4ebd9;padding:38px 25px;border:1px solid #c9c0ad;box-shadow:0 14px 38px #514a3210;position:relative}
+.dress .inner:before,.dress .inner:after{content:"❧";position:absolute;color:#91a071;font:46px 'Cormorant Garamond',serif;opacity:.55}
+.dress .inner:before{left:13px;top:8px;transform:rotate(-35deg)}
+.dress .inner:after{right:13px;bottom:8px;transform:rotate(145deg)}
+.swatch{width:57px;height:57px;border:4px solid #f7f4eb;box-shadow:0 0 0 1px #b8ad96,0 7px 16px #4b46301c}
+form{border:1px solid #d0c6b1;border-radius:4px;background:linear-gradient(145deg,#fbf9f2,#f1ecdf);box-shadow:0 16px 38px #514a3214;padding:34px}
+input[type=text],textarea{font-family:Manrope}
+.music{
+ position:fixed!important;top:calc(env(safe-area-inset-top,0px) + 14px)!important;
+ right:14px!important;bottom:auto!important;z-index:2147483000!important;
+ display:flex;align-items:center;justify-content:center;min-height:44px;
+ padding:12px 17px!important;border:1px solid #a7a17f!important;
+ border-radius:30px!important;background:#fbf8eef5!important;color:#4d5838!important;
+ box-shadow:0 8px 24px #383b281f!important;font:600 10px Manrope,sans-serif!important;
+ letter-spacing:.09em;pointer-events:auto!important;touch-action:manipulation;
+ -webkit-tap-highlight-color:transparent;
+}
+.music:active{transform:scale(.97)}
+footer{position:relative;overflow:hidden;background:linear-gradient(135deg,#e1ddcf,#d4d0c0)}
+footer:before{content:"❧";position:absolute;left:4%;top:5px;font:100px 'Cormorant Garamond',serif;color:#8b986b;opacity:.25;transform:rotate(-35deg)}
+footer:after{content:"❧";position:absolute;right:4%;bottom:0;font:100px 'Cormorant Garamond',serif;color:#8b986b;opacity:.25;transform:rotate(145deg)}
+@media(max-width:520px){
+ .branch-left{left:-52px;top:8%;width:155px}.branch-right{right:-48px;bottom:7%;width:150px}
+ .petal.p1{left:12%}.petal.p2{right:12%}.petal.p3{left:13%}.petal.p4{right:12%}
+ .music{top:calc(env(safe-area-inset-top,0px) + 10px)!important;right:10px!important;padding:11px 14px!important}
+ .frame{min-height:calc(100svh - 80px)}
+ .event{grid-template-columns:78px 1fr;gap:12px;padding:21px 15px}
+ .swatch{width:45px;height:45px}
+ .dress .inner{padding:36px 18px}
+ form{padding:25px 19px}
+}
+
 </style>
 </head>
 <body>
 <div class="hero" id="hero">
   <i class="leaf l1"></i><i class="leaf l2"></i><i class="leaf l3"></i><i class="leaf l4"></i>
+  <svg class="botanical branch-left" viewBox="0 0 220 360" aria-hidden="true">
+   <path d="M18 345 C72 275 86 206 106 145 C122 96 151 54 196 18"/>
+   <path class="leaf-shape" d="M74 247 C29 240 20 209 26 187 C60 192 79 212 74 247Z"/>
+   <path class="leaf-shape" d="M91 203 C131 207 155 185 158 158 C123 156 98 173 91 203Z"/>
+   <path class="leaf-shape" d="M109 150 C69 139 57 109 68 84 C101 97 116 119 109 150Z"/>
+   <path class="leaf-shape" d="M135 103 C172 103 192 79 190 52 C157 57 137 76 135 103Z"/>
+   <path class="leaf-shape" d="M51 290 C14 280 5 254 13 233 C43 243 59 263 51 290Z"/>
+   <path class="leaf-shape" d="M153 67 C126 47 127 20 145 3 C168 24 170 48 153 67Z"/>
+  </svg>
+  <svg class="botanical branch-right" viewBox="0 0 220 360" aria-hidden="true">
+   <path d="M18 345 C72 275 86 206 106 145 C122 96 151 54 196 18"/>
+   <path class="leaf-shape" d="M74 247 C29 240 20 209 26 187 C60 192 79 212 74 247Z"/>
+   <path class="leaf-shape" d="M91 203 C131 207 155 185 158 158 C123 156 98 173 91 203Z"/>
+   <path class="leaf-shape" d="M109 150 C69 139 57 109 68 84 C101 97 116 119 109 150Z"/>
+   <path class="leaf-shape" d="M135 103 C172 103 192 79 190 52 C157 57 137 76 135 103Z"/>
+   <path class="leaf-shape" d="M51 290 C14 280 5 254 13 233 C43 243 59 263 51 290Z"/>
+   <path class="leaf-shape" d="M153 67 C126 47 127 20 145 3 C168 24 170 48 153 67Z"/>
+  </svg>
+  <i class="petal p1"></i><i class="petal p2"></i><i class="petal p3"></i><i class="petal p4"></i><i class="petal p5"></i>
   <div class="frame">
     <div class="kicker">Приглашение на свадьбу</div>
     <div class="monogram">U<span>V</span></div>
@@ -286,8 +406,26 @@ function playTone(){
 }
 document.getElementById('musicBtn').addEventListener('click',async()=>{
  const btn=document.getElementById('musicBtn');
- if(!playing){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();playTone();melodyTimer=setInterval(playTone,2600);playing=true;btn.textContent='♫ Музыка: вкл.'}
- else{clearInterval(melodyTimer);playing=false;btn.textContent='♫ Музыка: выкл.'}
+ try{
+  if(!playing){
+   const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+   if(!AudioContextClass){btn.textContent='Музыка недоступна';return}
+   if(!audioCtx)audioCtx=new AudioContextClass();
+   await audioCtx.resume();
+   playTone();
+   melodyTimer=setInterval(playTone,2600);
+   playing=true;
+   btn.textContent='♫ Музыка: вкл.';
+   btn.setAttribute('aria-label','Выключить фоновую мелодию');
+  }else{
+   clearInterval(melodyTimer);playing=false;
+   btn.textContent='♫ Музыка: выкл.';
+   btn.setAttribute('aria-label','Включить фоновую мелодию');
+  }
+ }catch(error){
+  btn.textContent='♫ Музыка: выкл.';
+  console.error('Audio playback could not start',error);
+ }
 });
 </script>
 </body>
