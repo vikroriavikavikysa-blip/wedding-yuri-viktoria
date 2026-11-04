@@ -446,41 +446,72 @@ document.getElementById('rsvp').addEventListener('submit', async e=>{
   button.textContent='Попробовать снова';
  }
 });
-/* Lightweight original chime generated in-browser; no commercial song is embedded. */
-let audioCtx=null, playing=false, melodyTimer=null;
-function playTone(){
- if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
- const now=audioCtx.currentTime;
- [523.25,659.25,783.99].forEach((freq,i)=>{
-  const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
-  osc.type='sine'; osc.frequency.value=freq;
-  gain.gain.setValueAtTime(.0001,now+i*.22);
-  gain.gain.exponentialRampToValueAtTime(.035,now+i*.22+.04);
-  gain.gain.exponentialRampToValueAtTime(.0001,now+i*.22+.8);
-  osc.connect(gain);gain.connect(audioCtx.destination);
-  osc.start(now+i*.22);osc.stop(now+i*.22+.85);
- });
+/* Original synthesized arrangement of Pachelbel's public-domain Canon in D. */
+let audioCtx=null, playing=false, musicTimer=null, nextPhraseAt=0;
+const beat=60/86, step=beat/2;
+const melody=[
+  78,76,74,73,71,69,71,73,74,73,71,69,67,66,67,69,
+  78,76,74,73,71,69,71,73,74,76,78,81,79,76,74,73
+];
+const chords=[
+  [50,57,62,66], // D
+  [45,52,57,61], // A
+  [47,54,59,62], // B minor
+  [42,49,54,57], // F# minor
+];
+function noteHz(midi){return 440*Math.pow(2,(midi-69)/12)}
+function pianoNote(midi, at, duration, volume, tone='triangle'){
+  const osc=audioCtx.createOscillator(), overtone=audioCtx.createOscillator();
+  const gain=audioCtx.createGain(), mix=audioCtx.createGain();
+  osc.type=tone; osc.frequency.setValueAtTime(noteHz(midi),at);
+  overtone.type='sine'; overtone.frequency.setValueAtTime(noteHz(midi)*2.01,at);
+  mix.gain.value=.22;
+  gain.gain.setValueAtTime(.0001,at);
+  gain.gain.exponentialRampToValueAtTime(volume,at+.025);
+  gain.gain.exponentialRampToValueAtTime(volume*.42,at+.18);
+  gain.gain.exponentialRampToValueAtTime(.0001,at+duration);
+  osc.connect(gain); overtone.connect(mix); mix.connect(gain); gain.connect(audioCtx.destination);
+  osc.start(at); overtone.start(at);
+  osc.stop(at+duration+.03); overtone.stop(at+duration+.03);
+}
+function schedulePhrase(){
+  if(!playing || !audioCtx) return;
+  const startAt=Math.max(audioCtx.currentTime+.08,nextPhraseAt);
+  melody.forEach((m,i)=>{
+    const at=startAt+i*step;
+    pianoNote(m,at,step*1.85,.052,'triangle');
+    const chord=chords[Math.floor(i/8)%4];
+    const arp=chord[[0,2,1,2][i%4]];
+    pianoNote(arp,at,step*1.65,.018,'sine');
+    if(i%4===0) pianoNote(chord[0]-12,at,beat*1.7,.025,'sine');
+  });
+  nextPhraseAt=startAt+melody.length*step;
+  musicTimer=setTimeout(schedulePhrase,Math.max(100,(nextPhraseAt-audioCtx.currentTime)*1000-120));
 }
 document.getElementById('musicBtn').addEventListener('click',async()=>{
  const btn=document.getElementById('musicBtn');
  try{
+  const AudioContextClass=window.AudioContext||window.webkitAudioContext;
+  if(!AudioContextClass){btn.textContent='Музыка недоступна';return}
+  if(!audioCtx) audioCtx=new AudioContextClass();
   if(!playing){
-   const AudioContextClass=window.AudioContext||window.webkitAudioContext;
-   if(!AudioContextClass){btn.textContent='Музыка недоступна';return}
-   if(!audioCtx)audioCtx=new AudioContextClass();
    await audioCtx.resume();
-   playTone();
-   melodyTimer=setInterval(playTone,2600);
    playing=true;
+   nextPhraseAt=audioCtx.currentTime+.12;
+   schedulePhrase();
    btn.textContent='♫ Музыка: вкл.';
    btn.setAttribute('aria-label','Выключить фоновую мелодию');
   }else{
-   clearInterval(melodyTimer);playing=false;
+   playing=false;
+   clearTimeout(musicTimer);
+   await audioCtx.suspend();
    btn.textContent='♫ Музыка: выкл.';
    btn.setAttribute('aria-label','Включить фоновую мелодию');
   }
  }catch(error){
-  btn.textContent='♫ Музыка: выкл.';
+  playing=false;
+  clearTimeout(musicTimer);
+  btn.textContent='♫ Нажмите для музыки';
   console.error('Audio playback could not start',error);
  }
 });
