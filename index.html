@@ -344,6 +344,61 @@ section:before{margin-bottom:24px}
  .envelope{width:174px;height:112px}
 }
 
+
+/* --- Refined couture envelope: understated paper stationery --- */
+.envelope{
+  width:184px!important;
+  height:116px!important;
+  border:1px solid #c9bea8!important;
+  border-radius:1px!important;
+  overflow:visible!important;
+  background:
+    linear-gradient(155deg,rgba(255,255,255,.42),transparent 42%),
+    linear-gradient(135deg,#e9e2d3 0%,#d9d0bd 100%)!important;
+  box-shadow:0 13px 24px #514a3218, inset 0 0 0 1px #f8f4e9a8!important;
+  transform:none!important;
+}
+.envelope:before{
+  inset:-1px -1px auto!important;
+  height:62%!important;
+  border-radius:0!important;
+  clip-path:polygon(0 0,100% 0,50% 100%)!important;
+  background:linear-gradient(180deg,#f2ecdf 0%,#e3dbc9 100%)!important;
+  border:0!important;
+  border-bottom:1px solid #c8bea8!important;
+  box-shadow:0 2px 3px #766b5420!important;
+  transform-origin:top center!important;
+}
+.envelope:after{
+  inset:0!important;
+  border-radius:0!important;
+  clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%)!important;
+  background:
+    linear-gradient(145deg,transparent 49.55%,#c9bea9 49.8%,#e5dece 50.15%,transparent 50.45%),
+    linear-gradient(215deg,transparent 49.55%,#c9bea9 49.8%,#e5dece 50.15%,transparent 50.45%),
+    linear-gradient(180deg,transparent 49%,#d4cbb8 100%)!important;
+  z-index:3!important;
+}
+.seal{
+  width:29px!important;
+  height:29px!important;
+  border-radius:50%!important;
+  top:53%!important;
+  transform:translate(-50%,-35%)!important;
+  background:radial-gradient(circle at 35% 30%,#89936a 0%,#68764c 68%,#56643d 100%)!important;
+  border:1px solid #e7dfcd!important;
+  box-shadow:0 1px 4px #403d2b35!important;
+  color:#f5f0e4!important;
+  font:10px 'Cormorant Garamond',serif!important;
+  letter-spacing:-.06em!important;
+}
+.hero.opened .envelope{transform:translateY(10px)!important}
+.hero.opened .envelope:before{transform:rotateX(180deg)!important}
+@media(max-width:520px){
+ .envelope{width:170px!important;height:108px!important}
+ .seal{width:27px!important;height:27px!important}
+}
+
 </style>
 </head>
 <body>
