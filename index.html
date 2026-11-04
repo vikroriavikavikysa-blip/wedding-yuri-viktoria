@@ -399,9 +399,64 @@ section:before{margin-bottom:24px}
  .seal{width:27px!important;height:27px!important}
 }
 
+
+/* --- Floating olive petals across every section --- */
+body:before{z-index:1!important}
+.floating-petals{
+  position:fixed;inset:0;overflow:hidden;pointer-events:none;
+  z-index:3;contain:layout paint;
+}
+.floating-petals i{
+  position:absolute;top:-12vh;left:var(--x);width:var(--w);height:var(--h);
+  display:block;opacity:var(--o);
+  border-radius:88% 0 88% 0;
+  background:linear-gradient(145deg,#c0c99b 0%,#9eae78 28%,#7e925b 68%,#65794a 100%);
+  box-shadow:inset 1px 1px 2px #f8f5df88,0 4px 9px #424c2b18;
+  transform:rotate(var(--r));
+  animation:petal-rain var(--duration) linear var(--delay) infinite;
+  will-change:transform;
+}
+.floating-petals i:after{
+  content:"";position:absolute;left:49%;top:12%;height:76%;width:1px;
+  background:linear-gradient(180deg,#f3f0d7a8,#52683b55);
+  transform:rotate(13deg);transform-origin:center;
+}
+@keyframes petal-rain{
+  0%{transform:translate3d(0,-8vh,0) rotate(var(--r)) scale(.88)}
+  22%{transform:translate3d(24px,22vh,0) rotate(calc(var(--r) + 75deg)) scale(1)}
+  48%{transform:translate3d(-18px,48vh,0) rotate(calc(var(--r) + 165deg)) scale(.94)}
+  73%{transform:translate3d(28px,76vh,0) rotate(calc(var(--r) + 265deg)) scale(1.02)}
+  100%{transform:translate3d(-8px,116vh,0) rotate(calc(var(--r) + 360deg)) scale(.86)}
+}
+.floating-petals i:nth-child(1){--x:5%;--w:15px;--h:28px;--o:.48;--r:24deg;--duration:23s;--delay:-17s}
+.floating-petals i:nth-child(2){--x:14%;--w:11px;--h:21px;--o:.34;--r:68deg;--duration:29s;--delay:-7s}
+.floating-petals i:nth-child(3){--x:25%;--w:17px;--h:31px;--o:.42;--r:42deg;--duration:26s;--delay:-21s}
+.floating-petals i:nth-child(4){--x:36%;--w:12px;--h:23px;--o:.36;--r:110deg;--duration:31s;--delay:-12s}
+.floating-petals i:nth-child(5){--x:47%;--w:16px;--h:29px;--o:.4;--r:18deg;--duration:25s;--delay:-4s}
+.floating-petals i:nth-child(6){--x:58%;--w:10px;--h:20px;--o:.32;--r:82deg;--duration:30s;--delay:-24s}
+.floating-petals i:nth-child(7){--x:68%;--w:18px;--h:33px;--o:.43;--r:38deg;--duration:27s;--delay:-15s}
+.floating-petals i:nth-child(8){--x:79%;--w:12px;--h:22px;--o:.35;--r:125deg;--duration:32s;--delay:-9s}
+.floating-petals i:nth-child(9){--x:90%;--w:16px;--h:29px;--o:.4;--r:52deg;--duration:24s;--delay:-19s}
+.floating-petals i:nth-child(10){--x:96%;--w:10px;--h:19px;--o:.3;--r:95deg;--duration:28s;--delay:-2s}
+.floating-petals i:nth-child(11){--x:31%;--w:13px;--h:24px;--o:.3;--r:145deg;--duration:34s;--delay:-27s}
+.floating-petals i:nth-child(12){--x:73%;--w:13px;--h:25px;--o:.32;--r:12deg;--duration:33s;--delay:-31s}
+@media(max-width:520px){
+ .floating-petals i:nth-child(n+9){display:none}
+ .floating-petals i{opacity:calc(var(--o) * .8)}
+}
+@media(prefers-reduced-motion:reduce){
+ .floating-petals i{animation:none;top:var(--rest);opacity:.16}
+ .floating-petals i:nth-child(1){--rest:14vh}
+ .floating-petals i:nth-child(2){--rest:38vh}
+ .floating-petals i:nth-child(3){--rest:67vh}
+ .floating-petals i:nth-child(4){--rest:84vh}
+}
+
 </style>
 </head>
 <body>
+<div class="floating-petals" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+
 <div class="hero" id="hero">
   <i class="leaf l1"></i><i class="leaf l2"></i><i class="leaf l3"></i><i class="leaf l4"></i>
   <svg class="botanical branch-left" viewBox="0 0 220 360" aria-hidden="true">
