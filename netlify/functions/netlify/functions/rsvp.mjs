@@ -1,0 +1,1 @@
+netlify/functions/rsvp.mjs
