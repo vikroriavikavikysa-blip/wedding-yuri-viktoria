@@ -446,74 +446,80 @@ document.getElementById('rsvp').addEventListener('submit', async e=>{
   button.textContent='Попробовать снова';
  }
 });
-/* Original synthesized arrangement of Pachelbel's public-domain Canon in D. */
-let audioCtx=null, playing=false, musicTimer=null, nextPhraseAt=0;
-const beat=60/86, step=beat/2;
-const melody=[
-  78,76,74,73,71,69,71,73,74,73,71,69,67,66,67,69,
-  78,76,74,73,71,69,71,73,74,76,78,81,79,76,74,73
-];
-const chords=[
-  [50,57,62,66], // D
-  [45,52,57,61], // A
-  [47,54,59,62], // B minor
-  [42,49,54,57], // F# minor
-];
-function noteHz(midi){return 440*Math.pow(2,(midi-69)/12)}
-function pianoNote(midi, at, duration, volume, tone='triangle'){
-  const osc=audioCtx.createOscillator(), overtone=audioCtx.createOscillator();
-  const gain=audioCtx.createGain(), mix=audioCtx.createGain();
-  osc.type=tone; osc.frequency.setValueAtTime(noteHz(midi),at);
-  overtone.type='sine'; overtone.frequency.setValueAtTime(noteHz(midi)*2.01,at);
-  mix.gain.value=.22;
-  gain.gain.setValueAtTime(.0001,at);
-  gain.gain.exponentialRampToValueAtTime(volume,at+.025);
-  gain.gain.exponentialRampToValueAtTime(volume*.42,at+.18);
-  gain.gain.exponentialRampToValueAtTime(.0001,at+duration);
-  osc.connect(gain); overtone.connect(mix); mix.connect(gain); gain.connect(audioCtx.destination);
-  osc.start(at); overtone.start(at);
-  osc.stop(at+duration+.03); overtone.stop(at+duration+.03);
+/* Reliable Web Audio playback: original soft piano-style Canon-inspired arrangement. */
+let audioCtx=null, masterGain=null, playing=false, musicTimer=null, nextNoteTime=0, noteIndex=0;
+const beat=60/88;
+const melody=[74,73,71,69,71,73,74,69,71,69,67,66,67,69,71,66,67,66,64,62,64,66,67,62,66,64,62,61,62,64,66,61];
+const bass=[50,45,47,42,43,38,43,45];
+function midiHz(n){return 440*Math.pow(2,(n-69)/12)}
+function playPianoNote(midi,when,length,level){
+  const osc=audioCtx.createOscillator();
+  const overtone=audioCtx.createOscillator();
+  const amp=audioCtx.createGain();
+  const overtoneAmp=audioCtx.createGain();
+  osc.type='triangle';
+  osc.frequency.setValueAtTime(midiHz(midi),when);
+  overtone.type='sine';
+  overtone.frequency.setValueAtTime(midiHz(midi)*2,when);
+  amp.gain.setValueAtTime(0.0001,when);
+  amp.gain.linearRampToValueAtTime(level,when+0.035);
+  amp.gain.exponentialRampToValueAtTime(0.0001,when+length);
+  overtoneAmp.gain.setValueAtTime(0.0001,when);
+  overtoneAmp.gain.linearRampToValueAtTime(level*0.16,when+0.025);
+  overtoneAmp.gain.exponentialRampToValueAtTime(0.0001,when+length*0.7);
+  osc.connect(amp); amp.connect(masterGain);
+  overtone.connect(overtoneAmp); overtoneAmp.connect(masterGain);
+  osc.start(when); overtone.start(when);
+  osc.stop(when+length+0.04); overtone.stop(when+length+0.04);
 }
-function schedulePhrase(){
-  if(!playing || !audioCtx) return;
-  const startAt=Math.max(audioCtx.currentTime+.08,nextPhraseAt);
-  melody.forEach((m,i)=>{
-    const at=startAt+i*step;
-    pianoNote(m,at,step*1.85,.052,'triangle');
-    const chord=chords[Math.floor(i/8)%4];
-    const arp=chord[[0,2,1,2][i%4]];
-    pianoNote(arp,at,step*1.65,.018,'sine');
-    if(i%4===0) pianoNote(chord[0]-12,at,beat*1.7,.025,'sine');
-  });
-  nextPhraseAt=startAt+melody.length*step;
-  musicTimer=setTimeout(schedulePhrase,Math.max(100,(nextPhraseAt-audioCtx.currentTime)*1000-120));
+function scheduleMusic(){
+  if(!playing || !audioCtx || audioCtx.state!=='running') return;
+  const horizon=audioCtx.currentTime+0.22;
+  while(nextNoteTime<horizon){
+    const i=noteIndex%melody.length;
+    playPianoNote(melody[i],nextNoteTime,beat*0.88,0.19);
+    if(noteIndex%4===0){
+      const bassNote=bass[Math.floor(noteIndex/4)%bass.length];
+      playPianoNote(bassNote,nextNoteTime,beat*3.5,0.075);
+    }
+    nextNoteTime+=beat*0.5;
+    noteIndex++;
+  }
 }
 document.getElementById('musicBtn').addEventListener('click',async()=>{
- const btn=document.getElementById('musicBtn');
- try{
+  const btn=document.getElementById('musicBtn');
   const AudioContextClass=window.AudioContext||window.webkitAudioContext;
   if(!AudioContextClass){btn.textContent='Музыка недоступна';return}
-  if(!audioCtx) audioCtx=new AudioContextClass();
-  if(!playing){
-   await audioCtx.resume();
-   playing=true;
-   nextPhraseAt=audioCtx.currentTime+.12;
-   schedulePhrase();
-   btn.textContent='♫ Музыка: вкл.';
-   btn.setAttribute('aria-label','Выключить фоновую мелодию');
-  }else{
-   playing=false;
-   clearTimeout(musicTimer);
-   await audioCtx.suspend();
-   btn.textContent='♫ Музыка: выкл.';
-   btn.setAttribute('aria-label','Включить фоновую мелодию');
+  try{
+    if(!audioCtx){
+      audioCtx=new AudioContextClass();
+      masterGain=audioCtx.createGain();
+      masterGain.gain.value=0.9;
+      masterGain.connect(audioCtx.destination);
+    }
+    if(!playing){
+      await audioCtx.resume();
+      playing=true;
+      nextNoteTime=audioCtx.currentTime+0.04;
+      scheduleMusic();
+      musicTimer=setInterval(scheduleMusic,40);
+      btn.textContent='♫ Музыка: вкл.';
+      btn.setAttribute('aria-label','Выключить фоновую мелодию');
+    }else{
+      playing=false;
+      clearInterval(musicTimer);
+      musicTimer=null;
+      await audioCtx.suspend();
+      btn.textContent='♫ Музыка: выкл.';
+      btn.setAttribute('aria-label','Включить фоновую мелодию');
+    }
+  }catch(error){
+    playing=false;
+    clearInterval(musicTimer);
+    musicTimer=null;
+    btn.textContent='♫ Нажмите для музыки';
+    console.error('Audio playback could not start',error);
   }
- }catch(error){
-  playing=false;
-  clearTimeout(musicTimer);
-  btn.textContent='♫ Нажмите для музыки';
-  console.error('Audio playback could not start',error);
- }
 });
 </script>
 </body>
