@@ -49,7 +49,7 @@ p{line-height:1.9;font-size:14px}
 .event{display:grid;grid-template-columns:95px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
 .event time{font:500 27px 'Cormorant Garamond',serif;color:var(--olive)}
 .event h3{font:500 25px 'Cormorant Garamond',serif;margin:0 0 4px}
-.event p{margin:0;color:#77715f;font-size:12px}
+.event p{margin:0;color:#77715f;font-size:12px}.venue-link{display:inline-block;margin-top:8px;color:var(--olive);font-size:11px;line-height:1.7;text-decoration:none;border-bottom:1px solid #aab08e}.venue-link:hover{color:#4f5c38;border-color:currentColor}
 .dress{background:#e9e4d8}
 .swatches{display:flex;justify-content:center;gap:14px;margin:30px auto 12px;flex-wrap:wrap}
 .swatch{width:46px;height:46px;border-radius:50%;border:1px solid #ffffffa6;box-shadow:0 2px 8px #00000012}
@@ -104,10 +104,10 @@ footer .names{font-size:36px}
       <p>Сохраняйте расписание, чтобы провести этот день вместе с нами.</p>
       <div class="timeline">
         <div class="event"><time>13:30</time><div><h3>Сбор гостей</h3><p>Будем рады увидеться и обняться</p></div></div>
-        <div class="event"><time>14:00</time><div><h3>Церемония</h3><p>Самый трогательный момент нашего дня</p></div></div>
-        <div class="event"><time>16:00</time><div><h3>Банкет</h3><p>Праздничный вечер, тёплые слова и танцы</p></div></div>
+        <div class="event"><time>14:00</time><div><h3>Церемония</h3><p>Дом Сухова</p><a class="venue-link" href="https://www.google.com/maps/search/?api=1&query=Дом+Сухова+Проспект+Социалистический+12" target="_blank" rel="noopener">Проспект Социалистический, 12 · открыть карту ↗</a></div></div>
+        <div class="event"><time>16:00</time><div><h3>Банкет</h3><p>Берендей Хаус</p><a class="venue-link" href="https://www.google.com/maps/search/?api=1&query=Берендей+Хаус+ДНТ+Берёзовая+Роща-1+3-62" target="_blank" rel="noopener">ДНТ Берёзовая Роща-1, 3-62 · открыть карту ↗</a></div></div>
       </div>
-      <p class="note">Точное место и адрес добавим, когда все детали будут окончательно подтверждены.</p>
+      <p class="note">Сохраните адреса, чтобы легко найти места проведения.</p>
     </div>
   </section>
   <section class="dress">
@@ -140,7 +140,7 @@ footer .names{font-size:36px}
         <label for="message">Комментарий (необязательно)</label>
         <textarea id="message" name="message" placeholder="Можно оставить пожелание"></textarea>
         <button class="button" type="submit">Отправить ответ</button>
-        <p class="note" id="formNote">Это демонстрационная анкета: для получения ответов от гостей сайт нужно подключить к форме или почте.</p>
+        <p class="note" id="formNote">Ваш ответ придёт нам в Telegram. Спасибо!</p>
       </form>
     </div>
   </section>
