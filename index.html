@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#e9e4d7">
+<title>Юрий & Виктория — 05.06.2027</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap');
+:root{--paper:#f2eee5;--ink:#393a2d;--olive:#78845c;--olive2:#a5ad86;--brown:#78624e;--line:#c9c4b3}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font-family:Manrope,Arial,sans-serif;font-weight:300}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.12'/%3E%3C/svg%3E");z-index:5}
+.hero{min-height:100svh;display:grid;place-items:center;padding:28px 18px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#f8f5ed 0,#eee9de 65%,#e4dfd2 100%)}
+.frame{width:min(100%,560px);min-height:min(760px,calc(100svh - 56px));border:1px solid #b8b49f;outline:1px solid #c9c4b3;outline-offset:7px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:54px 28px;position:relative}
+.kicker{font-size:10px;letter-spacing:.32em;text-transform:uppercase;color:var(--brown)}
+.monogram{font-family:'Cormorant Garamond',serif;font-size:clamp(80px,19vw,132px);line-height:.95;color:var(--olive);font-weight:400;margin:22px 0 8px;letter-spacing:-.09em}
+.monogram span{font-style:italic;font-size:.85em;margin-left:-.12em}
+.names{font-family:'Cormorant Garamond',serif;font-size:clamp(35px,8vw,54px);font-weight:500;line-height:1.08;margin:12px 0}
+.amp{color:var(--olive);font-style:italic;padding:0 8px}
+.date{letter-spacing:.22em;font-size:13px;margin:18px 0 30px;color:var(--brown)}
+.open-btn,.button{border:1px solid var(--olive);background:var(--olive);color:#fff;padding:13px 25px;letter-spacing:.12em;text-transform:uppercase;font-size:10px;cursor:pointer;transition:.25s}
+.open-btn:hover,.button:hover{background:#626e49;transform:translateY(-2px)}
+.envelope{display:block;width:150px;height:94px;position:relative;margin:10px auto 28px;background:#d9d3c2;border:0;padding:0;box-shadow:0 12px 22px #514a321c;cursor:pointer;transition:.5s}
+.envelope:before{content:"";position:absolute;inset:0;background:#e6e0d1;clip-path:polygon(0 0,50% 58%,100% 0);transform-origin:top;transition:.6s;z-index:2}
+.envelope:after{content:"";position:absolute;inset:0;background:linear-gradient(135deg,transparent 49.5%,#c9c1ad 50%),linear-gradient(225deg,transparent 49.5%,#d2cbb9 50%);clip-path:polygon(0 100%,50% 42%,100% 100%);z-index:3}
+.seal{position:absolute;z-index:4;left:50%;top:50%;transform:translate(-50%,-35%);width:30px;height:30px;border-radius:50%;background:var(--olive);color:#f4f0e6;display:grid;place-items:center;font-family:Georgia,serif;font-size:13px}
+.envelope:focus-visible,.open-btn:focus-visible,.music:focus-visible,.button:focus-visible{outline:3px solid #9ba57b;outline-offset:4px}
+.hero.opened .envelope:before{transform:rotateX(180deg)}
+.hero.opened .envelope{transform:translateY(10px)}
+.leaf{position:absolute;width:12px;height:28px;background:var(--olive2);border-radius:100% 0 100% 0;opacity:.45;transform:rotate(35deg);animation:drift 9s ease-in-out infinite}
+.leaf.l1{top:13%;left:12%}.leaf.l2{top:26%;right:10%;transform:rotate(75deg);animation-delay:-3s}.leaf.l3{bottom:15%;left:18%;transform:rotate(100deg);animation-delay:-5s}.leaf.l4{bottom:22%;right:14%;animation-delay:-2s}
+@keyframes drift{0%,100%{translate:0 0;rotate:0deg}50%{translate:14px 25px;rotate:30deg}}
+main{display:none}
+main.visible{display:block;animation:fade .9s ease}
+@keyframes fade{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}
+section{padding:88px 20px;text-align:center}
+.inner{width:min(100%,720px);margin:auto}
+.eyebrow{font-size:10px;letter-spacing:.3em;text-transform:uppercase;color:var(--olive);margin-bottom:17px}
+h2{font:500 clamp(38px,8vw,58px)/1.05 'Cormorant Garamond',serif;margin:0 0 22px}
+p{line-height:1.9;font-size:14px}
+.intro{background:#e9e4d8}
+.script{font:italic 24px 'Cormorant Garamond',serif;color:var(--brown)}
+.countdown{display:flex;justify-content:center;gap:clamp(12px,5vw,42px);margin:36px 0 0}
+.countdown strong{display:block;font:500 clamp(32px,7vw,48px) 'Cormorant Garamond',serif;color:var(--olive)}
+.countdown span{font-size:9px;letter-spacing:.16em;text-transform:uppercase;color:var(--brown)}
+.timeline{max-width:520px;margin:38px auto 0;text-align:left}
+.event{display:grid;grid-template-columns:95px 1fr;gap:20px;padding:20px 0;border-bottom:1px solid var(--line)}
+.event time{font:500 27px 'Cormorant Garamond',serif;color:var(--olive)}
+.event h3{font:500 25px 'Cormorant Garamond',serif;margin:0 0 4px}
+.event p{margin:0;color:#77715f;font-size:12px}
+.dress{background:#e9e4d8}
+.swatches{display:flex;justify-content:center;gap:14px;margin:30px auto 12px;flex-wrap:wrap}
+.swatch{width:46px;height:46px;border-radius:50%;border:1px solid #ffffffa6;box-shadow:0 2px 8px #00000012}
+.swatch-labels{display:flex;justify-content:center;gap:18px;flex-wrap:wrap;color:#756b59;font-size:10px}
+form{max-width:440px;margin:30px auto 0;text-align:left}
+label{display:block;font-size:12px;margin:18px 0 8px;color:#625b4d}
+input[type=text],textarea{width:100%;border:0;border-bottom:1px solid #aaa48f;background:transparent;padding:12px 2px;font:300 14px Manrope;color:var(--ink);outline:none}
+.choices{display:flex;gap:22px;flex-wrap:wrap;font-size:13px}
+.choices label{display:flex;align-items:center;gap:8px}
+textarea{resize:vertical;min-height:65px}
+form .button{margin-top:24px;width:100%}
+.note{font-size:11px;color:#847d6d;margin-top:16px}
+footer{padding:48px 20px;text-align:center;background:#ded9cc}
+footer .names{font-size:36px}
+.music{position:fixed;right:18px;bottom:18px;z-index:10;border:1px solid #a8a58e;background:#f4f0e6eF;color:var(--ink);border-radius:50px;padding:12px 16px;font-size:11px;cursor:pointer}
+@media(max-width:480px){section{padding:68px 22px}.event{grid-template-columns:78px 1fr;gap:12px}.frame{padding:40px 20px}.swatch{width:40px;height:40px}}
+</style>
+</head>
+<body>
+<div class="hero" id="hero">
+  <i class="leaf l1"></i><i class="leaf l2"></i><i class="leaf l3"></i><i class="leaf l4"></i>
+  <div class="frame">
+    <div class="kicker">Приглашение на свадьбу</div>
+    <div class="monogram">U<span>V</span></div>
+    <div class="names">Юрий <span class="amp">&</span> Виктория</div>
+    <div class="date">05 · 06 · 2027</div>
+    <button class="envelope" id="envelopeBtn" type="button" aria-label="Открыть конверт"><span class="seal">U V</span></button>
+    <button class="open-btn" id="openInvite" type="button">Открыть приглашение</button>
+    <p class="note">Будем счастливы разделить этот день с вами</p>
+  </div>
+</div>
+<main id="content">
+  <section class="intro">
+    <div class="inner">
+      <div class="eyebrow">Дорогие родные и близкие</div>
+      <h2>Мы женимся!</h2>
+      <p>С большим счастьем и трепетом приглашаем вас разделить с нами один из самых важных и красивых дней нашей жизни.</p>
+      <div class="script">Юрий & Виктория</div>
+      <div class="eyebrow" style="margin-top:34px">До нашей встречи осталось</div>
+      <div class="countdown">
+        <div><strong id="days">—</strong><span>дней</span></div>
+        <div><strong id="hours">—</strong><span>часов</span></div>
+        <div><strong id="minutes">—</strong><span>минут</span></div>
+        <div><strong id="seconds">—</strong><span>секунд</span></div>
+      </div>
+    </div>
+  </section>
+  <section>
+    <div class="inner">
+      <div class="eyebrow">План дня</div>
+      <h2>Как всё будет</h2>
+      <p>Сохраняйте расписание, чтобы провести этот день вместе с нами.</p>
+      <div class="timeline">
+        <div class="event"><time>13:30</time><div><h3>Сбор гостей</h3><p>Будем рады увидеться и обняться</p></div></div>
+        <div class="event"><time>14:00</time><div><h3>Церемония</h3><p>Самый трогательный момент нашего дня</p></div></div>
+        <div class="event"><time>16:00</time><div><h3>Банкет</h3><p>Праздничный вечер, тёплые слова и танцы</p></div></div>
+      </div>
+      <p class="note">Точное место и адрес добавим, когда все детали будут окончательно подтверждены.</p>
+    </div>
+  </section>
+  <section class="dress">
+    <div class="inner">
+      <div class="eyebrow">Небольшая просьба</div>
+      <h2>Дресс-код</h2>
+      <p>Мы будем рады если в своих нарядах вы поддержите цветовую гамму нашей свадьбы</p>
+      <div class="swatches">
+        <span class="swatch" style="background:#514235" title="Тёмно-коричневый"></span>
+        <span class="swatch" style="background:#987b5d" title="Светло-коричневый"></span>
+        <span class="swatch" style="background:#d8cbb1" title="Бежевый"></span>
+        <span class="swatch" style="background:#7c895d" title="Оливковый"></span>
+      </div>
+      <div class="swatch-labels"><span>Тёмно-коричневый</span><span>Светло-коричневый</span><span>Бежевый</span><span>Оливковый</span></div>
+    </div>
+  </section>
+  <section>
+    <div class="inner">
+      <div class="eyebrow">Пожалуйста, ответьте</div>
+      <h2>Вы будете с нами?</h2>
+      <p>Будем благодарны, если вы сообщите, сможете ли разделить с нами этот день.</p>
+      <form id="rsvp">
+        <label for="guest">Ваше имя</label>
+        <input id="guest" name="guest" type="text" placeholder="Как к вам обращаться?" required>
+        <label>Ваш ответ</label>
+        <div class="choices">
+          <label><input type="radio" name="attendance" value="С радостью буду!" required> С радостью буду!</label>
+          <label><input type="radio" name="attendance" value="К сожалению, не смогу"> К сожалению, не смогу</label>
+        </div>
+        <label for="message">Комментарий (необязательно)</label>
+        <textarea id="message" name="message" placeholder="Можно оставить пожелание"></textarea>
+        <button class="button" type="submit">Отправить ответ</button>
+        <p class="note" id="formNote">Это демонстрационная анкета: для получения ответов от гостей сайт нужно подключить к форме или почте.</p>
+      </form>
+    </div>
+  </section>
+  <footer><div class="eyebrow">С любовью</div><div class="names">Юрий <span class="amp">&</span> Виктория</div><p>05 июня 2027</p></footer>
+</main>
+<button class="music" id="musicBtn" type="button" aria-label="Включить фоновую мелодию">♫ Музыка: выкл.</button>
+<script>
+const hero=document.getElementById('hero'), content=document.getElementById('content');
+function openInvitation(){
+ hero.classList.add('opened');
+ content.classList.add('visible');
+ document.getElementById('openInvite').textContent='Приглашение открыто';
+ setTimeout(()=>content.scrollIntoView({behavior:'smooth',block:'start'}),220);
+}
+document.getElementById('openInvite').addEventListener('click',openInvitation);
+document.getElementById('envelopeBtn').addEventListener('click',openInvitation);
+function tick(){
+ const target=new Date('2027-06-05T13:30:00');
+ let diff=Math.max(0,target-new Date());
+ const d=Math.floor(diff/86400000); diff%=86400000;
+ const h=Math.floor(diff/3600000); diff%=3600000;
+ const m=Math.floor(diff/60000); const s=Math.floor(diff/1000)%60;
+ document.getElementById('days').textContent=d;
+ document.getElementById('hours').textContent=h;
+ document.getElementById('minutes').textContent=m;
+ document.getElementById('seconds').textContent=s;
+}
+tick(); setInterval(tick,1000);
+document.getElementById('rsvp').addEventListener('submit', async e=>{
+ e.preventDefault();
+ const form=e.currentTarget;
+ const button=form.querySelector('button');
+ const note=document.getElementById('formNote');
+ const data=new FormData(form);
+ button.disabled=true;
+ button.textContent='Отправляем…';
+ note.textContent='Отправляем ваш ответ молодожёнам…';
+ try {
+  const response=await fetch('/.netlify/functions/rsvp',{
+   method:'POST',
+   headers:{'Content-Type':'application/json'},
+   body:JSON.stringify({
+    guest:data.get('guest'),
+    attendance:data.get('attendance'),
+    message:data.get('message')||''
+   })
+  });
+  const result=await response.json();
+  if(!response.ok) throw new Error(result.error||'Не удалось отправить ответ');
+  note.textContent='Спасибо! Ваш ответ отправлен молодожёнам 💚';
+  button.textContent='Ответ отправлен';
+  form.reset();
+ } catch(err) {
+  note.textContent='Не удалось отправить ответ. Попробуйте ещё раз чуть позже.';
+  button.disabled=false;
+  button.textContent='Попробовать снова';
+ }
+});
+/* Lightweight original chime generated in-browser; no commercial song is embedded. */
+let audioCtx=null, playing=false, melodyTimer=null;
+function playTone(){
+ if(!audioCtx) audioCtx=new (window.AudioContext||window.webkitAudioContext)();
+ const now=audioCtx.currentTime;
+ [523.25,659.25,783.99].forEach((freq,i)=>{
+  const osc=audioCtx.createOscillator(), gain=audioCtx.createGain();
+  osc.type='sine'; osc.frequency.value=freq;
+  gain.gain.setValueAtTime(.0001,now+i*.22);
+  gain.gain.exponentialRampToValueAtTime(.035,now+i*.22+.04);
+  gain.gain.exponentialRampToValueAtTime(.0001,now+i*.22+.8);
+  osc.connect(gain);gain.connect(audioCtx.destination);
+  osc.start(now+i*.22);osc.stop(now+i*.22+.85);
+ });
+}
+document.getElementById('musicBtn').addEventListener('click',async()=>{
+ const btn=document.getElementById('musicBtn');
+ if(!playing){if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();await audioCtx.resume();playTone();melodyTimer=setInterval(playTone,2600);playing=true;btn.textContent='♫ Музыка: вкл.'}
+ else{clearInterval(melodyTimer);playing=false;btn.textContent='♫ Музыка: выкл.'}
+});
+</script>
+</body>
+</html>
