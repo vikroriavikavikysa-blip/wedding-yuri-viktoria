@@ -515,6 +515,29 @@ section .inner,footer .eyebrow,footer .names,footer p{position:relative;z-index:
 }
 .hero.opened .seal{opacity:0;transform:translate(-50%,-35%) scale(.35) rotate(-18deg);filter:blur(5px);pointer-events:none}
 @media(max-width:520px){.seal{width:41px;height:41px;font-size:14px}}
+
+/* Intertwined U & V monograms throughout the invitation */
+.monogram{letter-spacing:0}
+.monogram span,.closing-monogram span{
+ display:inline-block;
+ margin-left:-.34em;
+ position:relative;
+ z-index:2;
+ font-style:italic;
+ transform:translateY(.12em) rotate(-9deg);
+ color:#a18b62;
+ text-shadow:1px 1px 0 #f5f1e8,-1px -1px 0 #f5f1e8;
+}
+.closing-monogram{letter-spacing:0;padding-right:0}
+.closing-monogram span{margin-left:-.34em;transform:translateY(.13em) rotate(-9deg)}
+.seal{display:block;text-align:center;line-height:39px;font-family:"Cormorant Garamond",Georgia,serif;font-size:19px;font-weight:600;letter-spacing:-.04em;padding-right:5px}
+.seal .seal-v{
+ position:absolute;left:50%;top:50%;margin:0;
+ transform:translate(-5%,-39%) rotate(-12deg);
+ font-size:20px;font-style:italic;line-height:1;color:#e6e3d0;
+ text-shadow:1px 1px 0 #465334,-1px -1px 0 #819064;
+}
+@media(max-width:520px){.seal{line-height:39px}.seal .seal-v{font-size:19px}}
 </style>
 </head>
 <body>
@@ -546,7 +569,7 @@ section .inner,footer .eyebrow,footer .names,footer p{position:relative;z-index:
     <div class="monogram">U<span>V</span></div>
     <div class="names">Юрий <span class="amp">&</span> Виктория</div>
     <div class="date">05 · 06 · 2027</div>
-    <button class="envelope" id="envelopeBtn" type="button" aria-label="Открыть конверт"><span class="seal">U V</span></button>
+    <button class="envelope" id="envelopeBtn" type="button" aria-label="Открыть конверт"><span class="seal">U<span class="seal-v">V</span></span></button>
     <button class="open-btn" id="openInvite" type="button">Открыть приглашение</button>
     <p class="note">Будем счастливы разделить этот день с вами</p>
   </div>
